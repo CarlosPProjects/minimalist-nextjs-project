@@ -1,3 +1,7 @@
-.background {
-  @apply bg-[url('/assets/sofa-bg.jpg')] bg-cover bg-no-repeat bg-center;
+.backgroundProductOne {
+  @apply bg-[url('/assets/sofa-bg.jpg')] bg-cover bg-no-repeat bg-center duration-300 opacity-100;
+}
+
+.backgroundProductTwo {
+  @apply bg-[url('/assets/cucharas-bg.jpg')] bg-cover bg-no-repeat bg-center duration-300 opacity-100;
 }
