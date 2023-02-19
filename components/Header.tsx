@@ -1,4 +1,4 @@
-import { FaSearch, FaEquals } from "react-icons/fa";
+import { SlMenu, SlMagnifier } from "react-icons/sl";
 
 const Header = () => {
   return (
@@ -7,7 +7,7 @@ const Header = () => {
         <div className="">Moth</div>
         <div className="flex flex-row items-center gap-4">
           <span className="">search</span>
-          <FaSearch
+          <SlMagnifier
             className="p-2 rounded-full bg-gray-50 cursor-pointer"
             color="black"
             size={30}
@@ -15,7 +15,7 @@ const Header = () => {
         </div>
         <div className="flex flex-row items-center gap-4">
           <span>menu</span>
-          <FaEquals
+          <SlMenu
             className="p-2 rounded-full bg-gray-50 cursor-pointer"
             color="black"
             size={30}
