@@ -1,7 +1,13 @@
 import styles from "@/styles/Hero.module.css";
 import { useState } from "react";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
-import { SlBasket, SlInfo, SlArrowLeft, SlArrowRight } from "react-icons/sl";
+import {
+  SlBasket,
+  SlInfo,
+  SlArrowLeft,
+  SlArrowRight,
+  SlClose,
+} from "react-icons/sl";
 import { motion } from "framer-motion";
 
 const Hero = () => {
@@ -13,6 +19,12 @@ const Hero = () => {
     `${styles.backgroundProductTwo}`
   );
   const [productInfo, setProductInfo] = useState("Crusious minimalistic");
+  const [isOpen, setIsOpen] = useState(false);
+
+  const variants = {
+    open: { opacity: 1, y: 0 },
+    closed: { opacity: 0, y: "100%" },
+  };
 
   const handleClick = () => {
     if (productBackground === `${styles.backgroundProductOne}`) {
@@ -31,18 +43,45 @@ const Hero = () => {
   return (
     <>
       <div className={`${productBackground} h-full `}>
-        <div className="h-full flex items-end justify-center pb-8 xl:hidden">
-          <div className="flex w-40 justify-between rounded-full bg-gray-50 py-3 px-4">
-            <div className="cursor-pointer" onClick={handleClick}>
-              <SlArrowLeft />
+        <div className="h-full flex items-end justify-center pb-8 xl:hidden relative">
+          <div className="flex flex-col items-center gap-2">
+            <div
+              className="bg-gray-50 p-2 rounded-full"
+              onClick={() => setIsOpen((isOpen) => !isOpen)}
+            >
+              <SlInfo />
             </div>
-            <div>
-              <SlBasket size={18} />
-            </div>
-            <div className="cursor-pointer" onClick={handleClick}>
-              <SlArrowRight />
+            <div className="flex w-40 justify-between rounded-full bg-gray-50 py-3 px-4 shadow-xl">
+              <div className="cursor-pointer" onClick={handleClick}>
+                <SlArrowLeft />
+              </div>
+              <div>
+                <SlBasket size={18} />
+              </div>
+              <div className="cursor-pointer" onClick={handleClick}>
+                <SlArrowRight />
+              </div>
             </div>
           </div>
+          <motion.div
+            className={`absolute flex self-center rounded-xl p-6 bg-gray-50 shadow-xl duration-500 opacity-100`}
+            animate={isOpen ? "open" : "closed"}
+            variants={variants}
+          >
+            <div className="flex gap-4 flex-col">
+              <h1 className="text-6xl">{productName}</h1>
+              <div className="text-center">
+                <p>clear lacquered</p>
+                <p>finishes</p>
+              </div>
+            </div>
+            <div
+              className="absolute right-2 top-2 cursor-pointer"
+              onClick={() => setIsOpen((isOpen) => !isOpen)}
+            >
+              <SlClose />
+            </div>
+          </motion.div>
         </div>
         <div className="h-full grid grid-cols-3 pb-20 max-xl:hidden">
           <div className="flex flex-col-reverse">
